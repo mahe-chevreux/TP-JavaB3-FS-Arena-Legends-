@@ -50,8 +50,10 @@ public class Main {
                 			
                 		}
                     System.out.println("Veuillez sélectionner un dé qui comporte entre 4 et 20 face :   ");
+                    
                     dé = sc.nextInt();
                 	}
+                	
                     Random random = new Random();
                     résult = random.nextInt(dé) +1 ;
                     System.out.println("Le résultat du dé est : " + résult);
