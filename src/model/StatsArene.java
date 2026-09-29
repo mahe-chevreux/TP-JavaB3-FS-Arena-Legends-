@@ -1,9 +1,8 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Random;
 
 public class StatsArene {
 
@@ -69,6 +68,71 @@ public class StatsArene {
         for (int num : resultat) {
             System.out.print(num + " ");
         }
+        
+        /************************************************************************************************************************************
+        Partie affichage arene
+        ************************************************************************************************************************************/
+        
+        char[][] arene = new char[8][8];
+        Random random = new Random();
+
+        
+        for (int i = 0; i < arene.length; i++) {
+            for (int j = 0; j < arene[i].length; j++) {
+                arene[i][j] = '.';
+            }
+        }
+
+        
+        int obstacles = 0;
+
+        while (obstacles < 6) {
+            int ligne = random.nextInt(8);
+            int colonne = random.nextInt(8);
+
+            
+            if (arene[ligne][colonne] == '.') {
+                arene[ligne][colonne] = '#';
+                obstacles++;
+            }
+        }
+
+        
+        boolean playerA = false;
+
+        while (!playerA) {
+            int ligne = random.nextInt(8);
+            int colonne = random.nextInt(8);
+
+            if (arene[ligne][colonne] == '.') {
+                arene[ligne][colonne] = 'A';
+                playerA = true;
+            }
+        }
+
+        
+        boolean playerB = false;
+
+        while (!playerB) {
+            int ligne = random.nextInt(8);
+            int colonne = random.nextInt(8);
+
+            if (arene[ligne][colonne] == '.') {
+                arene[ligne][colonne] = 'B';
+                playerB = true;
+            }
+        }
+
+        
+        System.out.println("      ");
+        System.out.println("=== ARÈNE ===" );
+
+        for (int i = 0; i < arene.length; i++) {
+            for (int j = 0; j < arene[i].length; j++) {
+                System.out.print(arene[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
     /************************************************************************************************************************************
     Partie Trier décroissant
@@ -119,6 +183,8 @@ public class StatsArene {
 
         return sansDoubles;
     }
+    
+   
     
     
 }
