@@ -90,9 +90,7 @@ public class Main {
                     break;
 
 
-                    /************************************************************************************************************************************
-                    Test coups critiques
-                    ************************************************************************************************************************************/            
+                       
                 case 3:
                     System.out.println("Test coup critique");
                    
@@ -110,7 +108,7 @@ public class Main {
                     	 }
                      }
                      pourcentage = 100 * crit / total; 
-                     System.out.println("Vous avez fait " + crit + " soit un pourcentage de " + pourcentage + " % de taux critique.3");
+                     System.out.println("Vous avez fait " + crit + " soit un pourcentage de " + pourcentage + " % de taux critique.");
                      break;
                 
                 case 0:
