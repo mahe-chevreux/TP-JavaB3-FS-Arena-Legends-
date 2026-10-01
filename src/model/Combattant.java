@@ -134,6 +134,16 @@ public abstract class  Combattant {
 	}
 	
 	
+	protected void subirDegatsBruts(int d) {
+
+	    pv -= d;
+
+	    if (pv < 0) {
+	        pv = 0;
+	    }
+	}
+	
+	
 	
 	
 		@Override
@@ -143,14 +153,21 @@ public abstract class  Combattant {
 	
 		}
 		
-		/*
+		
 		public static void main(String[] args) 
 		{
-			Combattant combattant1 = new Combattant("Kaelen", 120, 72, 18, 6); 
-			System.out.println(combattant1); combattant1.subirDegats(20); 
-			System.out.println(combattant1); combattant1.soigner(10); 
-			System.out.println(combattant1); 
-			System.out.println("K.O. ? " + combattant1.estKO()); 
+			Combattant c = new Mage("Veigar", 70, 56 , 20, 3);
+			Combattant c2 = new Guerrier("Tryndamere", 80, 24 , 15, 6);
+			System.out.println("Bonjour");
+			
+			System.out.println(c); c.subirDegats(20); 
+			System.out.println(c); c.soigner(10); 
+			System.out.println(c); 
+			System.out.println("K.O. ? " + c.estKO()); 
+			System.out.println(c2); c2.subirDegats(14); 
+			System.out.println(c2); c2.soigner(45); 
+			System.out.println(c2); 
+			System.out.println("K.O. ? " + c2.estKO());
 		}
-		*/
+		
 }

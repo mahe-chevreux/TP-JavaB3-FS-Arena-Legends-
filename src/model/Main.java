@@ -127,5 +127,17 @@ public class Main {
         Main m = new Main();
 
         m.menu(0);
+        Combattant c = new Mage("Veigar", 70, 56 , 20, 3);
+		Combattant c2 = new Guerrier("Tryndamere", 80, 24 , 15, 6);
+		System.out.println("Bonjour");
+		
+		System.out.println(c); c.subirDegats(20); 
+		System.out.println(c); c.soigner(10); 
+		System.out.println(c); 
+		System.out.println("K.O. ? " + c.estKO()); 
+		System.out.println(c2); c2.subirDegats(14); 
+		System.out.println(c2); c2.soigner(45); 
+		System.out.println(c2); 
+		System.out.println("K.O. ? " + c2.estKO());
     }
 }
