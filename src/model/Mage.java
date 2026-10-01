@@ -14,6 +14,10 @@ public class Mage extends Combattant {
 		return mana;
 	}
 
+	@Override
+	public String getClasse() {
+	    return "Mage";
+	}
 
 
 	@Override

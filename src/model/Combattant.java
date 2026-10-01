@@ -110,7 +110,7 @@ public abstract class  Combattant {
 	
 	public void soigner(int s)
 	{
-		
+		pv = pv + s;
 		
 		if (pv > pvMax)
 			{
@@ -122,7 +122,7 @@ public abstract class  Combattant {
 			s = 0;
 			}
 		
-			pv = pv + s;
+			
 		
 	}
 	
@@ -143,13 +143,13 @@ public abstract class  Combattant {
 	    }
 	}
 	
-	
+	public abstract String getClasse();
 	
 	
 		@Override
 		public String toString() 
 		{ 
-			return nom + " [" + pv + "/" + pvMax + " PV] ATK " + attaque + " DEF " + defense;
+			return getClasse()+ " " + nom + " [" + pv + "/" + pvMax + " PV] ATK " + attaque + " DEF " + defense;
 	
 		}
 		
@@ -158,6 +158,7 @@ public abstract class  Combattant {
 		{
 			Combattant c = new Mage("Veigar", 70, 56 , 20, 3);
 			Combattant c2 = new Guerrier("Tryndamere", 80, 24 , 15, 6);
+			Combattant c3 = new Voleur("Pyke", 78, 60 , 15, 6, 20);
 			System.out.println("Bonjour");
 			
 			System.out.println(c); c.subirDegats(20); 
@@ -168,6 +169,10 @@ public abstract class  Combattant {
 			System.out.println(c2); c2.soigner(45); 
 			System.out.println(c2); 
 			System.out.println("K.O. ? " + c2.estKO());
+			System.out.println(c3); c3.subirDegats(14); 
+			System.out.println(c3); c3.soigner(45); 
+			System.out.println(c3); 
+			System.out.println("K.O. ? " + c3.estKO());
 		}
 		
 }

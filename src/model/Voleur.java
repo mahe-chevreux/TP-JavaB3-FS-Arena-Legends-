@@ -26,6 +26,12 @@ public class Voleur extends Combattant {
         return esquive;
     }
 
+    
+    @Override
+	public String getClasse() {
+	    return "Voleur";
+	}
+    
     @Override
     public int attaquer(Combattant cible) {
 

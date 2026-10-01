@@ -15,8 +15,12 @@ public class Guerrier extends Combattant {
 		return rage;
 	}
 	
-
-
+	@Override
+	public String getClasse() {
+	    return "Guerrier";
+	}
+	
+	
 	@Override
 	public int attaquer(Combattant cible) {
 		// TODO Auto-generated method stub

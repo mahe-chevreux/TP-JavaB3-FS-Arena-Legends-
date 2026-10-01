@@ -93,22 +93,33 @@ public class Main {
                        
                 case 3:
                     System.out.println("Test coup critique");
+                    int serie = 0;
+                    int maxSerie = 0;
                    
-                    total = 10000;
-                     for (int i = 0; i < 10001; i++) {
+                     for (int i = 0; i < 10000; i++) {
                     	Random random2 = new Random();
                     	chance = random2.nextInt(100);
                     	 if (chance <= 15) 
                     	 {
-                    		 crit = crit +1;
+                    		 crit++;
+                    		 serie ++;
                     	 } 
+                    	 
+                    	 if (serie > maxSerie)
+                    	 {
+                    		 maxSerie = serie;
+                    	 }
                     	 else
                     	 {
-                    		 
+                    		 serie = 0;
                     	 }
+                 
                      }
-                     pourcentage = 100 * crit / total; 
+                     pourcentage = 100 * crit / 10000; 
+                     System.out.println("Vous avez fait une série maximum de critique de : " + maxSerie);
                      System.out.println("Vous avez fait " + crit + " soit un pourcentage de " + pourcentage + " % de taux critique.");
+                     
+                     
                      break;
                 
                 case 0:
@@ -127,17 +138,6 @@ public class Main {
         Main m = new Main();
 
         m.menu(0);
-        Combattant c = new Mage("Veigar", 70, 56 , 20, 3);
-		Combattant c2 = new Guerrier("Tryndamere", 80, 24 , 15, 6);
-		System.out.println("Bonjour");
-		
-		System.out.println(c); c.subirDegats(20); 
-		System.out.println(c); c.soigner(10); 
-		System.out.println(c); 
-		System.out.println("K.O. ? " + c.estKO()); 
-		System.out.println(c2); c2.subirDegats(14); 
-		System.out.println(c2); c2.soigner(45); 
-		System.out.println(c2); 
-		System.out.println("K.O. ? " + c2.estKO());
+        
     }
 }
