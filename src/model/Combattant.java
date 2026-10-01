@@ -8,7 +8,7 @@ public abstract class  Combattant {
 	private int attaque;
 	private int defense;
 	private static int combattant;
-	
+	private int[] historiqueDegats = new int[5];
 	public  Combattant() {
 		
 	}
@@ -100,12 +100,16 @@ public abstract class  Combattant {
 		if (d < 1)
 		{
 			d = 1;
+			
 		}
 		if(pv <= 0)
 		{
+			pv = pv - d;
 			d = 0;
 		}
-		pv = pv - d;
+		ajouterHistorique(d);
+		
+		
 	}
 	
 	public void soigner(int s)
@@ -124,6 +128,10 @@ public abstract class  Combattant {
 		
 			
 		
+	}
+	
+	public int[] getHistoriqueDegats() {
+	    return historiqueDegats.clone();
 	}
 	
 	public boolean estKO() 
@@ -153,6 +161,14 @@ public abstract class  Combattant {
 	
 		}
 		
+		private void ajouterHistorique(int degats) {
+
+		    for (int i = 0; i < historiqueDegats.length - 1; i++) {
+		        historiqueDegats[i] = historiqueDegats[i + 1];
+		    }
+
+		    historiqueDegats[historiqueDegats.length - 1] = degats;
+		}
 		
 		public static void main(String[] args) 
 		{

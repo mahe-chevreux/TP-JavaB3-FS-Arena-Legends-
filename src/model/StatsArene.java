@@ -69,6 +69,7 @@ public class StatsArene {
             System.out.print(num + " ");
         }
         
+        
         /************************************************************************************************************************************
         Partie affichage arene
         ************************************************************************************************************************************/
@@ -133,6 +134,9 @@ public class StatsArene {
             }
             System.out.println();
         }
+        int distanceAB = stats.distance(arene);
+
+        System.out.println("Distance entre A et B : " + distanceAB);
     }
     /************************************************************************************************************************************
     Partie Trier décroissant
@@ -167,6 +171,34 @@ public class StatsArene {
         return nombre;
     }
     
+    public int distance(char[][] grille) {
+
+        int ligneA = -1;
+        int colonneA = -1;
+
+        int ligneB = -1;
+        int colonneB = -1;
+
+        // Une seule passe dans la grille
+        for (int i = 0; i < grille.length; i++) {
+
+            for (int j = 0; j < grille[i].length; j++) {
+
+                if (grille[i][j] == 'A') {
+                    ligneA = i;
+                    colonneA = j;
+                }
+
+                if (grille[i][j] == 'B') {
+                    ligneB = i;
+                    colonneB = j;
+                }
+            }
+        }
+
+        // Distance de Manhattan
+        return Math.abs(ligneA - ligneB) + Math.abs(colonneA - colonneB);
+    }
     /************************************************************************************************************************************
     Partie sansDoublons
     ************************************************************************************************************************************/
