@@ -8,6 +8,9 @@ public class Voleur extends Combattant {
     private int esquive;
     private Random random = new Random();
 
+    /************************************************************************************************************************************
+    Constructeur Voleur.
+	 ************************************************************************************************************************************/
     public Voleur(String nom, int pvMax, int pv,
                   int attaque, int defense, int esquive) {
 

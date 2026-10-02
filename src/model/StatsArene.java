@@ -170,7 +170,9 @@ public class StatsArene {
 
         return nombre;
     }
-    
+    /************************************************************************************************************************************
+    Méthode distance
+     ************************************************************************************************************************************/
     public int distance(char[][] grille) {
 
         int ligneA = -1;
@@ -179,7 +181,7 @@ public class StatsArene {
         int ligneB = -1;
         int colonneB = -1;
 
-        // Une seule passe dans la grille
+        
         for (int i = 0; i < grille.length; i++) {
 
             for (int j = 0; j < grille[i].length; j++) {

@@ -7,11 +7,14 @@ public class Tournoi {
 
     private ArrayList<Combattant> participants;
 
+    /************************************************************************************************************************************
+   Méthode Tournoi.
+	 ************************************************************************************************************************************/
     public Tournoi() {
         participants = new ArrayList<>();
     }
 
-    // Inscrire un combattant
+   
     public boolean inscrire(Combattant c) {
 
         if (participants.size() >= 8) {
@@ -28,7 +31,7 @@ public class Tournoi {
         return true;
     }
 
-    // Désinscrire un combattant
+    
     public boolean desinscrire(String nom) {
 
         Iterator<Combattant> iterator = participants.iterator();
@@ -45,10 +48,12 @@ public class Tournoi {
         return false;
     }
 
-    // Duel entre deux combattants
+    /************************************************************************************************************************************
+    Méthode duel entre combattant.
+	 ************************************************************************************************************************************/
     public void duel(Combattant a, Combattant b) {
 
-        // Celui qui possède la meilleure attaque commence
+        
         Combattant attaquant;
         Combattant defenseur;
 
@@ -73,7 +78,7 @@ public class Tournoi {
                 attaquant.getNom() + " attaque " + defenseur.getNom()
             );
 
-            // On utilise la méthode attaquer() de la classe du combattant
+            
             int degats = attaquant.attaquer(defenseur);
 
             System.out.println(
@@ -85,8 +90,11 @@ public class Tournoi {
                 + defenseur.getPv() + "/" + defenseur.getPvMax() + " PV"
             );
 
-            // Vérification du K.O.
+            
             if (defenseur.estKO()) {
+
+                attaquant.ajouterVictoire();
+
                 System.out.println(
                     "\nK.O. ! " + defenseur.getNom() + " est vaincu."
                 );
@@ -98,7 +106,7 @@ public class Tournoi {
                 return;
             }
 
-            // Inversion des combattants
+            
             Combattant temp = attaquant;
             attaquant = defenseur;
             defenseur = temp;
@@ -106,7 +114,7 @@ public class Tournoi {
             tour++;
         }
 
-        // Si le duel dépasse 50 tours
+        
         if (tour > 50) {
 
             double pourcentageA =
@@ -146,5 +154,157 @@ public class Tournoi {
                 System.out.println("Égalité !");
             }
         }
+    }
+    /************************************************************************************************************************************
+    Méthode lancer.
+	 ************************************************************************************************************************************/
+    public Combattant lancer() {
+
+        
+        if (participants.size() < 2) {
+            return null;
+        }
+
+     
+        ArrayList<Combattant> tour = new ArrayList<>(participants);
+
+        
+        java.util.Collections.shuffle(tour);
+
+        while (tour.size() > 1) {
+
+            System.out.println("\n===== NOUVEAU TOUR =====");
+
+            ArrayList<Combattant> vainqueurs = new ArrayList<>();
+
+            
+            for (int i = 0; i < tour.size(); i += 2) {
+
+                Combattant a = tour.get(i);
+                Combattant b = tour.get(i + 1);
+
+                System.out.println(
+                    "\nDuel : " + a.getNom() + " VS " + b.getNom()
+                );
+
+                
+                duel(a, b);
+
+                
+                Combattant vainqueur;
+
+                if (a.estKO()) {
+                    vainqueur = b;
+                } else {
+                    vainqueur = a;
+                }
+
+                System.out.println(
+                    "Vainqueur du duel : " + vainqueur.getNom()
+                );
+
+               
+                vainqueur.soigner(vainqueur.getPvMax());
+
+                System.out.println(
+                    vainqueur.getNom() + " est entièrement soigné : "
+                    + vainqueur.getPv() + "/" + vainqueur.getPvMax() + " PV"
+                );
+
+                
+                vainqueurs.add(vainqueur);
+            }
+
+            
+            tour = vainqueurs;
+        }
+
+        
+        Combattant champion = tour.get(0);
+
+        System.out.println("\n===== CHAMPION DU TOURNOI =====");
+        System.out.println(champion);
+
+        return champion;
+    }
+    
+    /************************************************************************************************************************************
+    Méthode classement
+	 ************************************************************************************************************************************/
+    
+    public ArrayList<Combattant> classement() {
+
+        ArrayList<Combattant> classement =
+            new ArrayList<>(participants);
+
+        
+        for (int i = 0; i < classement.size() - 1; i++) {
+
+            int indiceMax = i;
+
+            for (int j = i + 1; j < classement.size(); j++) {
+
+                if (classement.get(j).getVictoires()
+                        > classement.get(indiceMax).getVictoires()) {
+
+                    indiceMax = j;
+                }
+            }
+
+            
+            if (indiceMax != i) {
+
+                Combattant temp = classement.get(i);
+
+                classement.set(i, classement.get(indiceMax));
+
+                classement.set(indiceMax, temp);
+            }
+        }
+
+        return classement;
+    }
+    
+    /************************************************************************************************************************************
+    Méthode statsParClasse.
+	 ************************************************************************************************************************************/
+    public void statsParClasse() {
+
+        int victoiresGuerrier = 0;
+        int victoiresMage = 0;
+        int victoiresVoleur = 0;
+        int victoiresPaladin = 0;
+
+        for (Combattant c : participants) {
+
+            switch (c.getClasse()) {
+
+                case "Guerrier":
+                    victoiresGuerrier += c.getVictoires();
+                    break;
+
+                case "Mage":
+                    victoiresMage += c.getVictoires();
+                    break;
+
+                case "Voleur":
+                    victoiresVoleur += c.getVictoires();
+                    break;
+
+                case "Paladin":
+                    victoiresPaladin += c.getVictoires();
+                    break;
+            }
+        }
+
+        System.out.println("\n===== STATISTIQUES PAR CLASSE =====");
+        System.out.println("Guerrier : " + victoiresGuerrier + " victoire(s)");
+        System.out.println("Mage     : " + victoiresMage + " victoire(s)");
+        System.out.println("Voleur   : " + victoiresVoleur + " victoire(s)");
+        System.out.println("Paladin  : " + victoiresPaladin + " victoire(s)");
+    }
+    
+    public ArrayList<Combattant> getParticipants() {
+        return new ArrayList<>(participants);
     }
 }

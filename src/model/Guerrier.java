@@ -3,6 +3,9 @@ package model;
 public class Guerrier extends Combattant {
 	private	int rage;
 	
+	/************************************************************************************************************************************
+    Constructeur Guerrier.
+	 ************************************************************************************************************************************/
 	public Guerrier (String nom, int pvMax, int pv, int attaque, int defense ) 
 	{
 		super(nom,pvMax,pv,attaque,defense);

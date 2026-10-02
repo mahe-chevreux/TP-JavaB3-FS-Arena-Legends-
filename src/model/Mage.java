@@ -3,6 +3,10 @@ package model;
 public class Mage extends Combattant {
 	
 	private int mana;
+	
+	/************************************************************************************************************************************
+    Constructeur Mage.
+	 ************************************************************************************************************************************/
 	public Mage (String nom, int pvMax, int pv, int attaque, int defense ) 
 	{
 		super(nom,pvMax,pv,attaque,defense);
